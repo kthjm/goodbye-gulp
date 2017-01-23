@@ -1,0 +1,51 @@
+{
+    "name": "dev_skelton",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kthjm/dev_skelton.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/kthjm/dev_skelton/issues"
+    },
+    "homepage": "https://github.com/kthjm/dev_skelton#readme",
+    "dependencies": {
+        "express": "^4.14.0",
+        "react": "^15.2.1",
+        "react-dom": "^15.2.1",
+        "sandbux": "^1.3.0",
+        "svgvs": "^1.1.0"
+    },
+    "devDependencies": {
+        "babel-core": "^6.11.4",
+        "babel-loader": "^6.2.4",
+        "babel-plugin-transform-object-assign": "^6.22.0",
+        "babel-preset-es2015": "^6.9.0",
+        "babel-preset-react": "^6.11.1",
+        "browser-sync": "^2.15.0",
+        "gulp": "^3.9.1",
+        "gulp-autoprefixer": "^3.1.1",
+        "gulp-babel": "^6.1.2",
+        "gulp-concat": "^2.6.0",
+        "gulp-if": "^2.0.1",
+        "gulp-imagemin": "^3.1.1",
+        "gulp-minify-css": "^1.2.4",
+        "gulp-nodemon": "^2.1.0",
+        "gulp-plumber": "^1.1.0",
+        "gulp-stylus": "^2.5.0",
+        "gulp-uglify": "^2.0.0",
+        "gulp-watch": "^4.3.9",
+        "minimist": "^1.2.0",
+        "nib": "^1.1.2",
+        "require-dir": "^0.3.0",
+        "webpack": "^1.14.0",
+        "webpack-stream": "^3.2.0"
+    }
+}
