@@ -40,23 +40,16 @@ const start_watch_all = err => {
 
         script : "./back/index",
 
+        verbose : true,
         //ignore : ["docs","node_modules","front","gulp"],
 
         //ignore : ["!(back)"],
 
-        watch : ["back"],
+        watch : ["./back"],
 
-        verbose : true,
+        ext : "js"
 
-        ext : "js",
-
-    }).on("restart",files=>{
-
-        console.log(files);
-
-        brync.reload();
-
-    });
+    }).on("restart",files=>{brync.reload();});
 
 };
 
@@ -65,9 +58,7 @@ const js_build = instance => {
 
     console.log(`will build ${instance.entry} => ${instance.output.filename}`);
 
-    console.log(instance.module.loaders[0]);
-
-    gulp.src(instance.entry)
+    return gulp.src(instance.entry)
     .pipe(gulp_plumber())
     .pipe(gulp_webpack(instance))
     .pipe(gulp_if(instance.uglify,gulp_uglify()))

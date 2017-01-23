@@ -8,15 +8,21 @@ var js_build, wp_config;
 
     wp_config = worker.wp_config;
 
-})(require("../worker"))
+})(require("../worker"));
+
+["mobile","pc"].forEach(device=>{(instance=>{
+
+    gulp.task(`js_${device}`,() => {
+
+        return js_build(instance);
+
+    });
+
+})(wp_config(device))});
 
 
-gulp.task("js",()=>{
+gulp.task("js",["js_mobile","js_pc"],cb=>{
 
-    ["mobile","pc"].forEach(device=>{(instance=>{
-
-        js_build(instance);
-
-    })(wp_config(device))});
+    if(cb) cb();
 
 });
