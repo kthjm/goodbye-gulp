@@ -1,9 +1,11 @@
 const gulp = require("gulp");
+
 const gulp_watch = require("gulp-watch");
 const brync = require("browser-sync").create("brync");
 const nodemon = require("nodemon");
-const webpack = require("webpack");
+
 const gulp_webpack = require("webpack-stream");
+const webpack = require("webpack");
 const gulp_plumber = require("gulp-plumber");
 const gulp_if = require("gulp-if");
 const gulp_uglify = require("gulp-uglify");
@@ -24,6 +26,30 @@ const start_watch_all = err => {
 
     }});
 
+    nodemon({
+
+        script : "./back/index",
+
+        verbose : true,
+
+        //ignore : ["docs","node_modules","front","gulp"],
+
+        //ignore : ["!(back)"],
+
+        watch : ["./back"],
+
+        ext : "js"
+
+    }).on("restart",files=>{
+
+        brync.reload();
+
+    }).on("quit",()=>{
+
+        brync.exit();
+
+    });
+
     brync.init(null,{
 
         proxy:"http://localhost:3000/",
@@ -36,20 +62,6 @@ const start_watch_all = err => {
 
     });
 
-    nodemon({
-
-        script : "./back/index",
-
-        verbose : true,
-        //ignore : ["docs","node_modules","front","gulp"],
-
-        //ignore : ["!(back)"],
-
-        watch : ["./back"],
-
-        ext : "js"
-
-    }).on("restart",files=>{brync.reload();});
 
 };
 
@@ -80,7 +92,7 @@ const wp_config = device => ({
 
         loader:"babel-loader",
 
-        query:{presets:["es2015","react"],}
+        query:{presets:["es2015","react"]}
 
     }]},
 

@@ -10,7 +10,9 @@ var js_build, wp_config;
 
 })(require("../worker"));
 
-["mobile","pc"].forEach(device=>{(instance=>{
+const devices = ["mobile","pc"];
+
+devices.forEach(device=>(instance=>{
 
     gulp.task(`js_${device}`,() => {
 
@@ -18,11 +20,12 @@ var js_build, wp_config;
 
     });
 
-})(wp_config(device))});
+})(wp_config(device)));
 
+gulp.task("js",
 
-gulp.task("js",["js_mobile","js_pc"],cb=>{
+    devices.map(device=>`js_${device}`),
 
-    if(cb) cb();
+    cb=>{if(cb) cb();}
 
-});
+);
