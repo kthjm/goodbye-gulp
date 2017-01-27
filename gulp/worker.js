@@ -10,13 +10,18 @@ const gulp_plumber = require("gulp-plumber");
 const gulp_if = require("gulp-if");
 const gulp_uglify = require("gulp-uglify");
 
+const devices = [
+    //"mobile",
+    "pc"
+];
+
 const start_watch_all = err => {
 
     console.log("let's watch!!");
 
     ["js","stylus","www"].forEach(type=>{switch (type) {
 
-        case "js": return ["mobile","pc"].forEach(device=>{(instance=>{
+        case "js": return devices.forEach(device=>{(instance=>{
 
             gulp_watch(`./front/${type}_${device}`,()=>{js_build(instance)});
 
@@ -115,7 +120,9 @@ module.exports = {
 
     wp_config : wp_config,
 
-    js_build : js_build
+    js_build : js_build,
+
+    devices : devices
 
 }
 //plugins:(()=>{switch (device) {case "4s":return ['transform-object-assign'];default:return [];}})()

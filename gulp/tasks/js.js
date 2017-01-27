@@ -1,6 +1,6 @@
 const gulp = require("gulp");
 
-var js_build, wp_config;
+var js_build, wp_config, devices;
 
 (worker=>{
 
@@ -8,9 +8,9 @@ var js_build, wp_config;
 
     wp_config = worker.wp_config;
 
-})(require("../worker"));
+    devices = worker.devices;
 
-const devices = ["mobile","pc"];
+})(require("../worker"));
 
 devices.forEach(device=>(instance=>{
 
