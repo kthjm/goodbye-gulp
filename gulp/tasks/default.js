@@ -1,5 +1,7 @@
 const gulp = require("gulp");
 
+const minimist = require("minimist");
+
 const start_watch_all = require("../worker").start_watch_all;
 
 gulp.task("default",(b=>{
@@ -8,4 +10,4 @@ gulp.task("default",(b=>{
 
     else if(b) return ["all"];
 
-})(require("minimist")(process.argv.slice()).b),()=>{start_watch_all();});
+})(minimist(process.argv.slice()).b),()=>{start_watch_all();});
