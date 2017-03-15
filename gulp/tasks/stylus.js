@@ -7,28 +7,28 @@ const gulp_autoprefixer = require("gulp-autoprefixer");
 const gulp_if = require("gulp-if");
 const gulp_minify = require("gulp-minify-css");
 
-const config = {
+const config = (cfg=>({
 
-    src : ["./front/stylus/*.*"],
+    src : `${cfg.src}/stylus/*.*`,
 
-    dest : "./docs/css",
+    dest : `${cfg.dest}/css`,
 
-    output : "main.css",
+    filename : "main.css",
 
     autoprefixer : {browsers:["last 2 versions"]},
 
     minify : false
 
-};
+}))(require("../default"));
 
 gulp.task("stylus",()=>{
 
-    console.log(`will build ${config.src} => ${config.dest}/${config.output}`);
+    console.log(`will build ${config.src} => ${config.dest}/${config.filename}`);
 
     gulp.src(config.src)
     .pipe(gulp_plumber())// エラー出ても止まらないようにする
     .pipe(gulp_stylus({use:[nib()]}))// 実際コンパイルしてるのはここ
-    .pipe(gulp_concat(config.output))// 1つのファイルに固める
+    .pipe(gulp_concat(config.filename))// 1つのファイルに固める
     .pipe(gulp_autoprefixer(config.autoprefixer))// vendor-prefixつける
     .pipe(gulp_if(config.minify,gulp_minify()))// 必要ならminifyする
     .pipe(gulp.dest(config.dest));// 出力する
